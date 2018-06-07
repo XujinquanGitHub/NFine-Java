@@ -10,6 +10,7 @@ public class HomeController {
 
     @GetMapping("/Index")
     public String Index(){
+
         return  "index.html";
     }
 
