@@ -1,0 +1,1508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nfine.mapper.sqlserver.nfinebase.dbo.SysAreaMapper">
+  <resultMap id="BaseResultMap" type="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea">
+    <id column="F_Id" jdbcType="VARCHAR" property="f_Id" />
+    <result column="F_ParentId" jdbcType="VARCHAR" property="f_ParentId" />
+    <result column="F_Layers" jdbcType="INTEGER" property="f_Layers" />
+    <result column="F_EnCode" jdbcType="VARCHAR" property="f_EnCode" />
+    <result column="F_FullName" jdbcType="VARCHAR" property="f_FullName" />
+    <result column="F_SimpleSpelling" jdbcType="VARCHAR" property="f_SimpleSpelling" />
+    <result column="F_SortCode" jdbcType="INTEGER" property="f_SortCode" />
+    <result column="F_DeleteMark" jdbcType="BIT" property="f_DeleteMark" />
+    <result column="F_EnabledMark" jdbcType="BIT" property="f_EnabledMark" />
+    <result column="F_Description" jdbcType="VARCHAR" property="f_Description" />
+    <result column="F_CreatorTime" jdbcType="TIMESTAMP" property="f_CreatorTime" />
+    <result column="F_CreatorUserId" jdbcType="VARCHAR" property="f_CreatorUserId" />
+    <result column="F_LastModifyTime" jdbcType="TIMESTAMP" property="f_LastModifyTime" />
+    <result column="F_LastModifyUserId" jdbcType="VARCHAR" property="f_LastModifyUserId" />
+    <result column="F_DeleteTime" jdbcType="TIMESTAMP" property="f_DeleteTime" />
+    <result column="F_DeleteUserId" jdbcType="VARCHAR" property="f_DeleteUserId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    F_Id, F_ParentId, F_Layers, F_EnCode, F_FullName, F_SimpleSpelling, F_SortCode, F_DeleteMark, 
+    F_EnabledMark, F_Description, F_CreatorTime, F_CreatorUserId, F_LastModifyTime, F_LastModifyUserId, 
+    F_DeleteTime, F_DeleteUserId
+  </sql>
+  <select id="selectByExample" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysAreaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from NFineBase.dbo.Sys_Area
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from NFineBase.dbo.Sys_Area
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysAreaExample">
+    delete from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="F_Id" keyProperty="f_Id" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea" useGeneratedKeys="true">
+    insert into NFineBase.dbo.Sys_Area (F_ParentId, F_Layers, F_EnCode, 
+      F_FullName, F_SimpleSpelling, F_SortCode, 
+      F_DeleteMark, F_EnabledMark, F_Description, 
+      F_CreatorTime, F_CreatorUserId, F_LastModifyTime, 
+      F_LastModifyUserId, F_DeleteTime, F_DeleteUserId
+      )
+    values (#{f_ParentId,jdbcType=VARCHAR}, #{f_Layers,jdbcType=INTEGER}, #{f_EnCode,jdbcType=VARCHAR}, 
+      #{f_FullName,jdbcType=VARCHAR}, #{f_SimpleSpelling,jdbcType=VARCHAR}, #{f_SortCode,jdbcType=INTEGER}, 
+      #{f_DeleteMark,jdbcType=BIT}, #{f_EnabledMark,jdbcType=BIT}, #{f_Description,jdbcType=VARCHAR}, 
+      #{f_CreatorTime,jdbcType=TIMESTAMP}, #{f_CreatorUserId,jdbcType=VARCHAR}, #{f_LastModifyTime,jdbcType=TIMESTAMP}, 
+      #{f_LastModifyUserId,jdbcType=VARCHAR}, #{f_DeleteTime,jdbcType=TIMESTAMP}, #{f_DeleteUserId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="F_Id" keyProperty="f_Id" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea" useGeneratedKeys="true">
+    insert into NFineBase.dbo.Sys_Area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="f_ParentId != null">
+        F_ParentId,
+      </if>
+      <if test="f_Layers != null">
+        F_Layers,
+      </if>
+      <if test="f_EnCode != null">
+        F_EnCode,
+      </if>
+      <if test="f_FullName != null">
+        F_FullName,
+      </if>
+      <if test="f_SimpleSpelling != null">
+        F_SimpleSpelling,
+      </if>
+      <if test="f_SortCode != null">
+        F_SortCode,
+      </if>
+      <if test="f_DeleteMark != null">
+        F_DeleteMark,
+      </if>
+      <if test="f_EnabledMark != null">
+        F_EnabledMark,
+      </if>
+      <if test="f_Description != null">
+        F_Description,
+      </if>
+      <if test="f_CreatorTime != null">
+        F_CreatorTime,
+      </if>
+      <if test="f_CreatorUserId != null">
+        F_CreatorUserId,
+      </if>
+      <if test="f_LastModifyTime != null">
+        F_LastModifyTime,
+      </if>
+      <if test="f_LastModifyUserId != null">
+        F_LastModifyUserId,
+      </if>
+      <if test="f_DeleteTime != null">
+        F_DeleteTime,
+      </if>
+      <if test="f_DeleteUserId != null">
+        F_DeleteUserId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="f_ParentId != null">
+        #{f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_Layers != null">
+        #{f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="f_EnCode != null">
+        #{f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="f_FullName != null">
+        #{f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SimpleSpelling != null">
+        #{f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SortCode != null">
+        #{f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="f_DeleteMark != null">
+        #{f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="f_EnabledMark != null">
+        #{f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="f_Description != null">
+        #{f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CreatorTime != null">
+        #{f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_CreatorUserId != null">
+        #{f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_LastModifyTime != null">
+        #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_LastModifyUserId != null">
+        #{f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_DeleteTime != null">
+        #{f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_DeleteUserId != null">
+        #{f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysAreaExample" resultType="java.lang.Long">
+    select count(*) from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update NFineBase.dbo.Sys_Area
+    <set>
+      <if test="record.f_Id != null">
+        F_Id = #{record.f_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_ParentId != null">
+        F_ParentId = #{record.f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_Layers != null">
+        F_Layers = #{record.f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="record.f_EnCode != null">
+        F_EnCode = #{record.f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_FullName != null">
+        F_FullName = #{record.f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_SimpleSpelling != null">
+        F_SimpleSpelling = #{record.f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_SortCode != null">
+        F_SortCode = #{record.f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.f_DeleteMark != null">
+        F_DeleteMark = #{record.f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="record.f_EnabledMark != null">
+        F_EnabledMark = #{record.f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="record.f_Description != null">
+        F_Description = #{record.f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_CreatorTime != null">
+        F_CreatorTime = #{record.f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_CreatorUserId != null">
+        F_CreatorUserId = #{record.f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_LastModifyTime != null">
+        F_LastModifyTime = #{record.f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_LastModifyUserId != null">
+        F_LastModifyUserId = #{record.f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_DeleteTime != null">
+        F_DeleteTime = #{record.f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_DeleteUserId != null">
+        F_DeleteUserId = #{record.f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update NFineBase.dbo.Sys_Area
+    set F_Id = #{record.f_Id,jdbcType=VARCHAR},
+      F_ParentId = #{record.f_ParentId,jdbcType=VARCHAR},
+      F_Layers = #{record.f_Layers,jdbcType=INTEGER},
+      F_EnCode = #{record.f_EnCode,jdbcType=VARCHAR},
+      F_FullName = #{record.f_FullName,jdbcType=VARCHAR},
+      F_SimpleSpelling = #{record.f_SimpleSpelling,jdbcType=VARCHAR},
+      F_SortCode = #{record.f_SortCode,jdbcType=INTEGER},
+      F_DeleteMark = #{record.f_DeleteMark,jdbcType=BIT},
+      F_EnabledMark = #{record.f_EnabledMark,jdbcType=BIT},
+      F_Description = #{record.f_Description,jdbcType=VARCHAR},
+      F_CreatorTime = #{record.f_CreatorTime,jdbcType=TIMESTAMP},
+      F_CreatorUserId = #{record.f_CreatorUserId,jdbcType=VARCHAR},
+      F_LastModifyTime = #{record.f_LastModifyTime,jdbcType=TIMESTAMP},
+      F_LastModifyUserId = #{record.f_LastModifyUserId,jdbcType=VARCHAR},
+      F_DeleteTime = #{record.f_DeleteTime,jdbcType=TIMESTAMP},
+      F_DeleteUserId = #{record.f_DeleteUserId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea">
+    update NFineBase.dbo.Sys_Area
+    <set>
+      <if test="f_ParentId != null">
+        F_ParentId = #{f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_Layers != null">
+        F_Layers = #{f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="f_EnCode != null">
+        F_EnCode = #{f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="f_FullName != null">
+        F_FullName = #{f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SimpleSpelling != null">
+        F_SimpleSpelling = #{f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SortCode != null">
+        F_SortCode = #{f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="f_DeleteMark != null">
+        F_DeleteMark = #{f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="f_EnabledMark != null">
+        F_EnabledMark = #{f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="f_Description != null">
+        F_Description = #{f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CreatorTime != null">
+        F_CreatorTime = #{f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_CreatorUserId != null">
+        F_CreatorUserId = #{f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_LastModifyTime != null">
+        F_LastModifyTime = #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_LastModifyUserId != null">
+        F_LastModifyUserId = #{f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_DeleteTime != null">
+        F_DeleteTime = #{f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_DeleteUserId != null">
+        F_DeleteUserId = #{f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea">
+    update NFineBase.dbo.Sys_Area
+    set F_ParentId = #{f_ParentId,jdbcType=VARCHAR},
+      F_Layers = #{f_Layers,jdbcType=INTEGER},
+      F_EnCode = #{f_EnCode,jdbcType=VARCHAR},
+      F_FullName = #{f_FullName,jdbcType=VARCHAR},
+      F_SimpleSpelling = #{f_SimpleSpelling,jdbcType=VARCHAR},
+      F_SortCode = #{f_SortCode,jdbcType=INTEGER},
+      F_DeleteMark = #{f_DeleteMark,jdbcType=BIT},
+      F_EnabledMark = #{f_EnabledMark,jdbcType=BIT},
+      F_Description = #{f_Description,jdbcType=VARCHAR},
+      F_CreatorTime = #{f_CreatorTime,jdbcType=TIMESTAMP},
+      F_CreatorUserId = #{f_CreatorUserId,jdbcType=VARCHAR},
+      F_LastModifyTime = #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      F_LastModifyUserId = #{f_LastModifyUserId,jdbcType=VARCHAR},
+      F_DeleteTime = #{f_DeleteTime,jdbcType=TIMESTAMP},
+      F_DeleteUserId = #{f_DeleteUserId,jdbcType=VARCHAR}
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea">
+    <id column="F_Id" jdbcType="VARCHAR" property="f_Id" />
+    <result column="F_ParentId" jdbcType="VARCHAR" property="f_ParentId" />
+    <result column="F_Layers" jdbcType="INTEGER" property="f_Layers" />
+    <result column="F_EnCode" jdbcType="VARCHAR" property="f_EnCode" />
+    <result column="F_FullName" jdbcType="VARCHAR" property="f_FullName" />
+    <result column="F_SimpleSpelling" jdbcType="VARCHAR" property="f_SimpleSpelling" />
+    <result column="F_SortCode" jdbcType="INTEGER" property="f_SortCode" />
+    <result column="F_DeleteMark" jdbcType="BIT" property="f_DeleteMark" />
+    <result column="F_EnabledMark" jdbcType="BIT" property="f_EnabledMark" />
+    <result column="F_Description" jdbcType="VARCHAR" property="f_Description" />
+    <result column="F_CreatorTime" jdbcType="TIMESTAMP" property="f_CreatorTime" />
+    <result column="F_CreatorUserId" jdbcType="VARCHAR" property="f_CreatorUserId" />
+    <result column="F_LastModifyTime" jdbcType="TIMESTAMP" property="f_LastModifyTime" />
+    <result column="F_LastModifyUserId" jdbcType="VARCHAR" property="f_LastModifyUserId" />
+    <result column="F_DeleteTime" jdbcType="TIMESTAMP" property="f_DeleteTime" />
+    <result column="F_DeleteUserId" jdbcType="VARCHAR" property="f_DeleteUserId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    F_Id, F_ParentId, F_Layers, F_EnCode, F_FullName, F_SimpleSpelling, F_SortCode, F_DeleteMark, 
+    F_EnabledMark, F_Description, F_CreatorTime, F_CreatorUserId, F_LastModifyTime, F_LastModifyUserId, 
+    F_DeleteTime, F_DeleteUserId
+  </sql>
+  <select id="selectByExample" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysAreaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from NFineBase.dbo.Sys_Area
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from NFineBase.dbo.Sys_Area
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysAreaExample">
+    delete from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="F_Id" keyProperty="f_Id" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea" useGeneratedKeys="true">
+    insert into NFineBase.dbo.Sys_Area (F_ParentId, F_Layers, F_EnCode, 
+      F_FullName, F_SimpleSpelling, F_SortCode, 
+      F_DeleteMark, F_EnabledMark, F_Description, 
+      F_CreatorTime, F_CreatorUserId, F_LastModifyTime, 
+      F_LastModifyUserId, F_DeleteTime, F_DeleteUserId
+      )
+    values (#{f_ParentId,jdbcType=VARCHAR}, #{f_Layers,jdbcType=INTEGER}, #{f_EnCode,jdbcType=VARCHAR}, 
+      #{f_FullName,jdbcType=VARCHAR}, #{f_SimpleSpelling,jdbcType=VARCHAR}, #{f_SortCode,jdbcType=INTEGER}, 
+      #{f_DeleteMark,jdbcType=BIT}, #{f_EnabledMark,jdbcType=BIT}, #{f_Description,jdbcType=VARCHAR}, 
+      #{f_CreatorTime,jdbcType=TIMESTAMP}, #{f_CreatorUserId,jdbcType=VARCHAR}, #{f_LastModifyTime,jdbcType=TIMESTAMP}, 
+      #{f_LastModifyUserId,jdbcType=VARCHAR}, #{f_DeleteTime,jdbcType=TIMESTAMP}, #{f_DeleteUserId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="F_Id" keyProperty="f_Id" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea" useGeneratedKeys="true">
+    insert into NFineBase.dbo.Sys_Area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="f_ParentId != null">
+        F_ParentId,
+      </if>
+      <if test="f_Layers != null">
+        F_Layers,
+      </if>
+      <if test="f_EnCode != null">
+        F_EnCode,
+      </if>
+      <if test="f_FullName != null">
+        F_FullName,
+      </if>
+      <if test="f_SimpleSpelling != null">
+        F_SimpleSpelling,
+      </if>
+      <if test="f_SortCode != null">
+        F_SortCode,
+      </if>
+      <if test="f_DeleteMark != null">
+        F_DeleteMark,
+      </if>
+      <if test="f_EnabledMark != null">
+        F_EnabledMark,
+      </if>
+      <if test="f_Description != null">
+        F_Description,
+      </if>
+      <if test="f_CreatorTime != null">
+        F_CreatorTime,
+      </if>
+      <if test="f_CreatorUserId != null">
+        F_CreatorUserId,
+      </if>
+      <if test="f_LastModifyTime != null">
+        F_LastModifyTime,
+      </if>
+      <if test="f_LastModifyUserId != null">
+        F_LastModifyUserId,
+      </if>
+      <if test="f_DeleteTime != null">
+        F_DeleteTime,
+      </if>
+      <if test="f_DeleteUserId != null">
+        F_DeleteUserId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="f_ParentId != null">
+        #{f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_Layers != null">
+        #{f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="f_EnCode != null">
+        #{f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="f_FullName != null">
+        #{f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SimpleSpelling != null">
+        #{f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SortCode != null">
+        #{f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="f_DeleteMark != null">
+        #{f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="f_EnabledMark != null">
+        #{f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="f_Description != null">
+        #{f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CreatorTime != null">
+        #{f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_CreatorUserId != null">
+        #{f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_LastModifyTime != null">
+        #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_LastModifyUserId != null">
+        #{f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_DeleteTime != null">
+        #{f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_DeleteUserId != null">
+        #{f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysAreaExample" resultType="java.lang.Long">
+    select count(*) from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update NFineBase.dbo.Sys_Area
+    <set>
+      <if test="record.f_Id != null">
+        F_Id = #{record.f_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_ParentId != null">
+        F_ParentId = #{record.f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_Layers != null">
+        F_Layers = #{record.f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="record.f_EnCode != null">
+        F_EnCode = #{record.f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_FullName != null">
+        F_FullName = #{record.f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_SimpleSpelling != null">
+        F_SimpleSpelling = #{record.f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_SortCode != null">
+        F_SortCode = #{record.f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.f_DeleteMark != null">
+        F_DeleteMark = #{record.f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="record.f_EnabledMark != null">
+        F_EnabledMark = #{record.f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="record.f_Description != null">
+        F_Description = #{record.f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_CreatorTime != null">
+        F_CreatorTime = #{record.f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_CreatorUserId != null">
+        F_CreatorUserId = #{record.f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_LastModifyTime != null">
+        F_LastModifyTime = #{record.f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_LastModifyUserId != null">
+        F_LastModifyUserId = #{record.f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_DeleteTime != null">
+        F_DeleteTime = #{record.f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_DeleteUserId != null">
+        F_DeleteUserId = #{record.f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update NFineBase.dbo.Sys_Area
+    set F_Id = #{record.f_Id,jdbcType=VARCHAR},
+      F_ParentId = #{record.f_ParentId,jdbcType=VARCHAR},
+      F_Layers = #{record.f_Layers,jdbcType=INTEGER},
+      F_EnCode = #{record.f_EnCode,jdbcType=VARCHAR},
+      F_FullName = #{record.f_FullName,jdbcType=VARCHAR},
+      F_SimpleSpelling = #{record.f_SimpleSpelling,jdbcType=VARCHAR},
+      F_SortCode = #{record.f_SortCode,jdbcType=INTEGER},
+      F_DeleteMark = #{record.f_DeleteMark,jdbcType=BIT},
+      F_EnabledMark = #{record.f_EnabledMark,jdbcType=BIT},
+      F_Description = #{record.f_Description,jdbcType=VARCHAR},
+      F_CreatorTime = #{record.f_CreatorTime,jdbcType=TIMESTAMP},
+      F_CreatorUserId = #{record.f_CreatorUserId,jdbcType=VARCHAR},
+      F_LastModifyTime = #{record.f_LastModifyTime,jdbcType=TIMESTAMP},
+      F_LastModifyUserId = #{record.f_LastModifyUserId,jdbcType=VARCHAR},
+      F_DeleteTime = #{record.f_DeleteTime,jdbcType=TIMESTAMP},
+      F_DeleteUserId = #{record.f_DeleteUserId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea">
+    update NFineBase.dbo.Sys_Area
+    <set>
+      <if test="f_ParentId != null">
+        F_ParentId = #{f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_Layers != null">
+        F_Layers = #{f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="f_EnCode != null">
+        F_EnCode = #{f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="f_FullName != null">
+        F_FullName = #{f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SimpleSpelling != null">
+        F_SimpleSpelling = #{f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SortCode != null">
+        F_SortCode = #{f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="f_DeleteMark != null">
+        F_DeleteMark = #{f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="f_EnabledMark != null">
+        F_EnabledMark = #{f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="f_Description != null">
+        F_Description = #{f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CreatorTime != null">
+        F_CreatorTime = #{f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_CreatorUserId != null">
+        F_CreatorUserId = #{f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_LastModifyTime != null">
+        F_LastModifyTime = #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_LastModifyUserId != null">
+        F_LastModifyUserId = #{f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_DeleteTime != null">
+        F_DeleteTime = #{f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_DeleteUserId != null">
+        F_DeleteUserId = #{f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea">
+    update NFineBase.dbo.Sys_Area
+    set F_ParentId = #{f_ParentId,jdbcType=VARCHAR},
+      F_Layers = #{f_Layers,jdbcType=INTEGER},
+      F_EnCode = #{f_EnCode,jdbcType=VARCHAR},
+      F_FullName = #{f_FullName,jdbcType=VARCHAR},
+      F_SimpleSpelling = #{f_SimpleSpelling,jdbcType=VARCHAR},
+      F_SortCode = #{f_SortCode,jdbcType=INTEGER},
+      F_DeleteMark = #{f_DeleteMark,jdbcType=BIT},
+      F_EnabledMark = #{f_EnabledMark,jdbcType=BIT},
+      F_Description = #{f_Description,jdbcType=VARCHAR},
+      F_CreatorTime = #{f_CreatorTime,jdbcType=TIMESTAMP},
+      F_CreatorUserId = #{f_CreatorUserId,jdbcType=VARCHAR},
+      F_LastModifyTime = #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      F_LastModifyUserId = #{f_LastModifyUserId,jdbcType=VARCHAR},
+      F_DeleteTime = #{f_DeleteTime,jdbcType=TIMESTAMP},
+      F_DeleteUserId = #{f_DeleteUserId,jdbcType=VARCHAR}
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea">
+    <id column="F_Id" jdbcType="VARCHAR" property="f_Id" />
+    <result column="F_ParentId" jdbcType="VARCHAR" property="f_ParentId" />
+    <result column="F_Layers" jdbcType="INTEGER" property="f_Layers" />
+    <result column="F_EnCode" jdbcType="VARCHAR" property="f_EnCode" />
+    <result column="F_FullName" jdbcType="VARCHAR" property="f_FullName" />
+    <result column="F_SimpleSpelling" jdbcType="VARCHAR" property="f_SimpleSpelling" />
+    <result column="F_SortCode" jdbcType="INTEGER" property="f_SortCode" />
+    <result column="F_DeleteMark" jdbcType="BIT" property="f_DeleteMark" />
+    <result column="F_EnabledMark" jdbcType="BIT" property="f_EnabledMark" />
+    <result column="F_Description" jdbcType="VARCHAR" property="f_Description" />
+    <result column="F_CreatorTime" jdbcType="TIMESTAMP" property="f_CreatorTime" />
+    <result column="F_CreatorUserId" jdbcType="VARCHAR" property="f_CreatorUserId" />
+    <result column="F_LastModifyTime" jdbcType="TIMESTAMP" property="f_LastModifyTime" />
+    <result column="F_LastModifyUserId" jdbcType="VARCHAR" property="f_LastModifyUserId" />
+    <result column="F_DeleteTime" jdbcType="TIMESTAMP" property="f_DeleteTime" />
+    <result column="F_DeleteUserId" jdbcType="VARCHAR" property="f_DeleteUserId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    F_Id, F_ParentId, F_Layers, F_EnCode, F_FullName, F_SimpleSpelling, F_SortCode, F_DeleteMark, 
+    F_EnabledMark, F_Description, F_CreatorTime, F_CreatorUserId, F_LastModifyTime, F_LastModifyUserId, 
+    F_DeleteTime, F_DeleteUserId
+  </sql>
+  <select id="selectByExample" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysAreaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from NFineBase.dbo.Sys_Area
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from NFineBase.dbo.Sys_Area
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysAreaExample">
+    delete from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="F_Id" keyProperty="f_Id" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea" useGeneratedKeys="true">
+    insert into NFineBase.dbo.Sys_Area (F_ParentId, F_Layers, F_EnCode, 
+      F_FullName, F_SimpleSpelling, F_SortCode, 
+      F_DeleteMark, F_EnabledMark, F_Description, 
+      F_CreatorTime, F_CreatorUserId, F_LastModifyTime, 
+      F_LastModifyUserId, F_DeleteTime, F_DeleteUserId
+      )
+    values (#{f_ParentId,jdbcType=VARCHAR}, #{f_Layers,jdbcType=INTEGER}, #{f_EnCode,jdbcType=VARCHAR}, 
+      #{f_FullName,jdbcType=VARCHAR}, #{f_SimpleSpelling,jdbcType=VARCHAR}, #{f_SortCode,jdbcType=INTEGER}, 
+      #{f_DeleteMark,jdbcType=BIT}, #{f_EnabledMark,jdbcType=BIT}, #{f_Description,jdbcType=VARCHAR}, 
+      #{f_CreatorTime,jdbcType=TIMESTAMP}, #{f_CreatorUserId,jdbcType=VARCHAR}, #{f_LastModifyTime,jdbcType=TIMESTAMP}, 
+      #{f_LastModifyUserId,jdbcType=VARCHAR}, #{f_DeleteTime,jdbcType=TIMESTAMP}, #{f_DeleteUserId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="F_Id" keyProperty="f_Id" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea" useGeneratedKeys="true">
+    insert into NFineBase.dbo.Sys_Area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="f_ParentId != null">
+        F_ParentId,
+      </if>
+      <if test="f_Layers != null">
+        F_Layers,
+      </if>
+      <if test="f_EnCode != null">
+        F_EnCode,
+      </if>
+      <if test="f_FullName != null">
+        F_FullName,
+      </if>
+      <if test="f_SimpleSpelling != null">
+        F_SimpleSpelling,
+      </if>
+      <if test="f_SortCode != null">
+        F_SortCode,
+      </if>
+      <if test="f_DeleteMark != null">
+        F_DeleteMark,
+      </if>
+      <if test="f_EnabledMark != null">
+        F_EnabledMark,
+      </if>
+      <if test="f_Description != null">
+        F_Description,
+      </if>
+      <if test="f_CreatorTime != null">
+        F_CreatorTime,
+      </if>
+      <if test="f_CreatorUserId != null">
+        F_CreatorUserId,
+      </if>
+      <if test="f_LastModifyTime != null">
+        F_LastModifyTime,
+      </if>
+      <if test="f_LastModifyUserId != null">
+        F_LastModifyUserId,
+      </if>
+      <if test="f_DeleteTime != null">
+        F_DeleteTime,
+      </if>
+      <if test="f_DeleteUserId != null">
+        F_DeleteUserId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="f_ParentId != null">
+        #{f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_Layers != null">
+        #{f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="f_EnCode != null">
+        #{f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="f_FullName != null">
+        #{f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SimpleSpelling != null">
+        #{f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SortCode != null">
+        #{f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="f_DeleteMark != null">
+        #{f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="f_EnabledMark != null">
+        #{f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="f_Description != null">
+        #{f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CreatorTime != null">
+        #{f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_CreatorUserId != null">
+        #{f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_LastModifyTime != null">
+        #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_LastModifyUserId != null">
+        #{f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_DeleteTime != null">
+        #{f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_DeleteUserId != null">
+        #{f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysAreaExample" resultType="java.lang.Long">
+    select count(*) from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update NFineBase.dbo.Sys_Area
+    <set>
+      <if test="record.f_Id != null">
+        F_Id = #{record.f_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_ParentId != null">
+        F_ParentId = #{record.f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_Layers != null">
+        F_Layers = #{record.f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="record.f_EnCode != null">
+        F_EnCode = #{record.f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_FullName != null">
+        F_FullName = #{record.f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_SimpleSpelling != null">
+        F_SimpleSpelling = #{record.f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_SortCode != null">
+        F_SortCode = #{record.f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.f_DeleteMark != null">
+        F_DeleteMark = #{record.f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="record.f_EnabledMark != null">
+        F_EnabledMark = #{record.f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="record.f_Description != null">
+        F_Description = #{record.f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_CreatorTime != null">
+        F_CreatorTime = #{record.f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_CreatorUserId != null">
+        F_CreatorUserId = #{record.f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_LastModifyTime != null">
+        F_LastModifyTime = #{record.f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_LastModifyUserId != null">
+        F_LastModifyUserId = #{record.f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_DeleteTime != null">
+        F_DeleteTime = #{record.f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_DeleteUserId != null">
+        F_DeleteUserId = #{record.f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update NFineBase.dbo.Sys_Area
+    set F_Id = #{record.f_Id,jdbcType=VARCHAR},
+      F_ParentId = #{record.f_ParentId,jdbcType=VARCHAR},
+      F_Layers = #{record.f_Layers,jdbcType=INTEGER},
+      F_EnCode = #{record.f_EnCode,jdbcType=VARCHAR},
+      F_FullName = #{record.f_FullName,jdbcType=VARCHAR},
+      F_SimpleSpelling = #{record.f_SimpleSpelling,jdbcType=VARCHAR},
+      F_SortCode = #{record.f_SortCode,jdbcType=INTEGER},
+      F_DeleteMark = #{record.f_DeleteMark,jdbcType=BIT},
+      F_EnabledMark = #{record.f_EnabledMark,jdbcType=BIT},
+      F_Description = #{record.f_Description,jdbcType=VARCHAR},
+      F_CreatorTime = #{record.f_CreatorTime,jdbcType=TIMESTAMP},
+      F_CreatorUserId = #{record.f_CreatorUserId,jdbcType=VARCHAR},
+      F_LastModifyTime = #{record.f_LastModifyTime,jdbcType=TIMESTAMP},
+      F_LastModifyUserId = #{record.f_LastModifyUserId,jdbcType=VARCHAR},
+      F_DeleteTime = #{record.f_DeleteTime,jdbcType=TIMESTAMP},
+      F_DeleteUserId = #{record.f_DeleteUserId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea">
+    update NFineBase.dbo.Sys_Area
+    <set>
+      <if test="f_ParentId != null">
+        F_ParentId = #{f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_Layers != null">
+        F_Layers = #{f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="f_EnCode != null">
+        F_EnCode = #{f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="f_FullName != null">
+        F_FullName = #{f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SimpleSpelling != null">
+        F_SimpleSpelling = #{f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SortCode != null">
+        F_SortCode = #{f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="f_DeleteMark != null">
+        F_DeleteMark = #{f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="f_EnabledMark != null">
+        F_EnabledMark = #{f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="f_Description != null">
+        F_Description = #{f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CreatorTime != null">
+        F_CreatorTime = #{f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_CreatorUserId != null">
+        F_CreatorUserId = #{f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_LastModifyTime != null">
+        F_LastModifyTime = #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_LastModifyUserId != null">
+        F_LastModifyUserId = #{f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_DeleteTime != null">
+        F_DeleteTime = #{f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_DeleteUserId != null">
+        F_DeleteUserId = #{f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nfine.domain.sqlserver.nfinebase.dbo.SysArea">
+    update NFineBase.dbo.Sys_Area
+    set F_ParentId = #{f_ParentId,jdbcType=VARCHAR},
+      F_Layers = #{f_Layers,jdbcType=INTEGER},
+      F_EnCode = #{f_EnCode,jdbcType=VARCHAR},
+      F_FullName = #{f_FullName,jdbcType=VARCHAR},
+      F_SimpleSpelling = #{f_SimpleSpelling,jdbcType=VARCHAR},
+      F_SortCode = #{f_SortCode,jdbcType=INTEGER},
+      F_DeleteMark = #{f_DeleteMark,jdbcType=BIT},
+      F_EnabledMark = #{f_EnabledMark,jdbcType=BIT},
+      F_Description = #{f_Description,jdbcType=VARCHAR},
+      F_CreatorTime = #{f_CreatorTime,jdbcType=TIMESTAMP},
+      F_CreatorUserId = #{f_CreatorUserId,jdbcType=VARCHAR},
+      F_LastModifyTime = #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      F_LastModifyUserId = #{f_LastModifyUserId,jdbcType=VARCHAR},
+      F_DeleteTime = #{f_DeleteTime,jdbcType=TIMESTAMP},
+      F_DeleteUserId = #{f_DeleteUserId,jdbcType=VARCHAR}
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.nfine-dal.domain.sqlserver.nfinebase.dbo.SysArea">
+    <id column="F_Id" jdbcType="VARCHAR" property="f_Id" />
+    <result column="F_ParentId" jdbcType="VARCHAR" property="f_ParentId" />
+    <result column="F_Layers" jdbcType="INTEGER" property="f_Layers" />
+    <result column="F_EnCode" jdbcType="VARCHAR" property="f_EnCode" />
+    <result column="F_FullName" jdbcType="VARCHAR" property="f_FullName" />
+    <result column="F_SimpleSpelling" jdbcType="VARCHAR" property="f_SimpleSpelling" />
+    <result column="F_SortCode" jdbcType="INTEGER" property="f_SortCode" />
+    <result column="F_DeleteMark" jdbcType="BIT" property="f_DeleteMark" />
+    <result column="F_EnabledMark" jdbcType="BIT" property="f_EnabledMark" />
+    <result column="F_Description" jdbcType="VARCHAR" property="f_Description" />
+    <result column="F_CreatorTime" jdbcType="TIMESTAMP" property="f_CreatorTime" />
+    <result column="F_CreatorUserId" jdbcType="VARCHAR" property="f_CreatorUserId" />
+    <result column="F_LastModifyTime" jdbcType="TIMESTAMP" property="f_LastModifyTime" />
+    <result column="F_LastModifyUserId" jdbcType="VARCHAR" property="f_LastModifyUserId" />
+    <result column="F_DeleteTime" jdbcType="TIMESTAMP" property="f_DeleteTime" />
+    <result column="F_DeleteUserId" jdbcType="VARCHAR" property="f_DeleteUserId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    F_Id, F_ParentId, F_Layers, F_EnCode, F_FullName, F_SimpleSpelling, F_SortCode, F_DeleteMark, 
+    F_EnabledMark, F_Description, F_CreatorTime, F_CreatorUserId, F_LastModifyTime, F_LastModifyUserId, 
+    F_DeleteTime, F_DeleteUserId
+  </sql>
+  <select id="selectByExample" parameterType="com.example.nfine-dal.domain.sqlserver.nfinebase.dbo.SysAreaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from NFineBase.dbo.Sys_Area
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from NFineBase.dbo.Sys_Area
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.nfine-dal.domain.sqlserver.nfinebase.dbo.SysAreaExample">
+    delete from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="F_Id" keyProperty="f_Id" parameterType="com.example.nfine-dal.domain.sqlserver.nfinebase.dbo.SysArea" useGeneratedKeys="true">
+    insert into NFineBase.dbo.Sys_Area (F_ParentId, F_Layers, F_EnCode, 
+      F_FullName, F_SimpleSpelling, F_SortCode, 
+      F_DeleteMark, F_EnabledMark, F_Description, 
+      F_CreatorTime, F_CreatorUserId, F_LastModifyTime, 
+      F_LastModifyUserId, F_DeleteTime, F_DeleteUserId
+      )
+    values (#{f_ParentId,jdbcType=VARCHAR}, #{f_Layers,jdbcType=INTEGER}, #{f_EnCode,jdbcType=VARCHAR}, 
+      #{f_FullName,jdbcType=VARCHAR}, #{f_SimpleSpelling,jdbcType=VARCHAR}, #{f_SortCode,jdbcType=INTEGER}, 
+      #{f_DeleteMark,jdbcType=BIT}, #{f_EnabledMark,jdbcType=BIT}, #{f_Description,jdbcType=VARCHAR}, 
+      #{f_CreatorTime,jdbcType=TIMESTAMP}, #{f_CreatorUserId,jdbcType=VARCHAR}, #{f_LastModifyTime,jdbcType=TIMESTAMP}, 
+      #{f_LastModifyUserId,jdbcType=VARCHAR}, #{f_DeleteTime,jdbcType=TIMESTAMP}, #{f_DeleteUserId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="F_Id" keyProperty="f_Id" parameterType="com.example.nfine-dal.domain.sqlserver.nfinebase.dbo.SysArea" useGeneratedKeys="true">
+    insert into NFineBase.dbo.Sys_Area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="f_ParentId != null">
+        F_ParentId,
+      </if>
+      <if test="f_Layers != null">
+        F_Layers,
+      </if>
+      <if test="f_EnCode != null">
+        F_EnCode,
+      </if>
+      <if test="f_FullName != null">
+        F_FullName,
+      </if>
+      <if test="f_SimpleSpelling != null">
+        F_SimpleSpelling,
+      </if>
+      <if test="f_SortCode != null">
+        F_SortCode,
+      </if>
+      <if test="f_DeleteMark != null">
+        F_DeleteMark,
+      </if>
+      <if test="f_EnabledMark != null">
+        F_EnabledMark,
+      </if>
+      <if test="f_Description != null">
+        F_Description,
+      </if>
+      <if test="f_CreatorTime != null">
+        F_CreatorTime,
+      </if>
+      <if test="f_CreatorUserId != null">
+        F_CreatorUserId,
+      </if>
+      <if test="f_LastModifyTime != null">
+        F_LastModifyTime,
+      </if>
+      <if test="f_LastModifyUserId != null">
+        F_LastModifyUserId,
+      </if>
+      <if test="f_DeleteTime != null">
+        F_DeleteTime,
+      </if>
+      <if test="f_DeleteUserId != null">
+        F_DeleteUserId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="f_ParentId != null">
+        #{f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_Layers != null">
+        #{f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="f_EnCode != null">
+        #{f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="f_FullName != null">
+        #{f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SimpleSpelling != null">
+        #{f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SortCode != null">
+        #{f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="f_DeleteMark != null">
+        #{f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="f_EnabledMark != null">
+        #{f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="f_Description != null">
+        #{f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CreatorTime != null">
+        #{f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_CreatorUserId != null">
+        #{f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_LastModifyTime != null">
+        #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_LastModifyUserId != null">
+        #{f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_DeleteTime != null">
+        #{f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_DeleteUserId != null">
+        #{f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.nfine-dal.domain.sqlserver.nfinebase.dbo.SysAreaExample" resultType="java.lang.Long">
+    select count(*) from NFineBase.dbo.Sys_Area
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update NFineBase.dbo.Sys_Area
+    <set>
+      <if test="record.f_Id != null">
+        F_Id = #{record.f_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_ParentId != null">
+        F_ParentId = #{record.f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_Layers != null">
+        F_Layers = #{record.f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="record.f_EnCode != null">
+        F_EnCode = #{record.f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_FullName != null">
+        F_FullName = #{record.f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_SimpleSpelling != null">
+        F_SimpleSpelling = #{record.f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_SortCode != null">
+        F_SortCode = #{record.f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.f_DeleteMark != null">
+        F_DeleteMark = #{record.f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="record.f_EnabledMark != null">
+        F_EnabledMark = #{record.f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="record.f_Description != null">
+        F_Description = #{record.f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_CreatorTime != null">
+        F_CreatorTime = #{record.f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_CreatorUserId != null">
+        F_CreatorUserId = #{record.f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_LastModifyTime != null">
+        F_LastModifyTime = #{record.f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_LastModifyUserId != null">
+        F_LastModifyUserId = #{record.f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f_DeleteTime != null">
+        F_DeleteTime = #{record.f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.f_DeleteUserId != null">
+        F_DeleteUserId = #{record.f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update NFineBase.dbo.Sys_Area
+    set F_Id = #{record.f_Id,jdbcType=VARCHAR},
+      F_ParentId = #{record.f_ParentId,jdbcType=VARCHAR},
+      F_Layers = #{record.f_Layers,jdbcType=INTEGER},
+      F_EnCode = #{record.f_EnCode,jdbcType=VARCHAR},
+      F_FullName = #{record.f_FullName,jdbcType=VARCHAR},
+      F_SimpleSpelling = #{record.f_SimpleSpelling,jdbcType=VARCHAR},
+      F_SortCode = #{record.f_SortCode,jdbcType=INTEGER},
+      F_DeleteMark = #{record.f_DeleteMark,jdbcType=BIT},
+      F_EnabledMark = #{record.f_EnabledMark,jdbcType=BIT},
+      F_Description = #{record.f_Description,jdbcType=VARCHAR},
+      F_CreatorTime = #{record.f_CreatorTime,jdbcType=TIMESTAMP},
+      F_CreatorUserId = #{record.f_CreatorUserId,jdbcType=VARCHAR},
+      F_LastModifyTime = #{record.f_LastModifyTime,jdbcType=TIMESTAMP},
+      F_LastModifyUserId = #{record.f_LastModifyUserId,jdbcType=VARCHAR},
+      F_DeleteTime = #{record.f_DeleteTime,jdbcType=TIMESTAMP},
+      F_DeleteUserId = #{record.f_DeleteUserId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.nfine-dal.domain.sqlserver.nfinebase.dbo.SysArea">
+    update NFineBase.dbo.Sys_Area
+    <set>
+      <if test="f_ParentId != null">
+        F_ParentId = #{f_ParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_Layers != null">
+        F_Layers = #{f_Layers,jdbcType=INTEGER},
+      </if>
+      <if test="f_EnCode != null">
+        F_EnCode = #{f_EnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="f_FullName != null">
+        F_FullName = #{f_FullName,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SimpleSpelling != null">
+        F_SimpleSpelling = #{f_SimpleSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="f_SortCode != null">
+        F_SortCode = #{f_SortCode,jdbcType=INTEGER},
+      </if>
+      <if test="f_DeleteMark != null">
+        F_DeleteMark = #{f_DeleteMark,jdbcType=BIT},
+      </if>
+      <if test="f_EnabledMark != null">
+        F_EnabledMark = #{f_EnabledMark,jdbcType=BIT},
+      </if>
+      <if test="f_Description != null">
+        F_Description = #{f_Description,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CreatorTime != null">
+        F_CreatorTime = #{f_CreatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_CreatorUserId != null">
+        F_CreatorUserId = #{f_CreatorUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_LastModifyTime != null">
+        F_LastModifyTime = #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_LastModifyUserId != null">
+        F_LastModifyUserId = #{f_LastModifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="f_DeleteTime != null">
+        F_DeleteTime = #{f_DeleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f_DeleteUserId != null">
+        F_DeleteUserId = #{f_DeleteUserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.nfine-dal.domain.sqlserver.nfinebase.dbo.SysArea">
+    update NFineBase.dbo.Sys_Area
+    set F_ParentId = #{f_ParentId,jdbcType=VARCHAR},
+      F_Layers = #{f_Layers,jdbcType=INTEGER},
+      F_EnCode = #{f_EnCode,jdbcType=VARCHAR},
+      F_FullName = #{f_FullName,jdbcType=VARCHAR},
+      F_SimpleSpelling = #{f_SimpleSpelling,jdbcType=VARCHAR},
+      F_SortCode = #{f_SortCode,jdbcType=INTEGER},
+      F_DeleteMark = #{f_DeleteMark,jdbcType=BIT},
+      F_EnabledMark = #{f_EnabledMark,jdbcType=BIT},
+      F_Description = #{f_Description,jdbcType=VARCHAR},
+      F_CreatorTime = #{f_CreatorTime,jdbcType=TIMESTAMP},
+      F_CreatorUserId = #{f_CreatorUserId,jdbcType=VARCHAR},
+      F_LastModifyTime = #{f_LastModifyTime,jdbcType=TIMESTAMP},
+      F_LastModifyUserId = #{f_LastModifyUserId,jdbcType=VARCHAR},
+      F_DeleteTime = #{f_DeleteTime,jdbcType=TIMESTAMP},
+      F_DeleteUserId = #{f_DeleteUserId,jdbcType=VARCHAR}
+    where F_Id = #{f_Id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -80,7 +80,26 @@
            <version>0.0.1-SNAPSHOT</version>
        </dependency>
 
-    </dependencies>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.4.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>5.0.7.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>6.2.1.jre8</version>
+		</dependency>
+
+
+	</dependencies>
 
 	<build>
 		<plugins>

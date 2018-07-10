@@ -1,4 +1,4 @@
-package com.example.nfineweb;
+package com.nfineweb;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.example.nfineweb.ViewModel;
+package com.nfineweb.viewmodel;
 
 
 import lombok.Getter;
